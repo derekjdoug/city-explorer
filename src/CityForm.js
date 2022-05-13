@@ -28,6 +28,12 @@ class CityForm extends React.Component {
           <Card.Text>Longitude: {this.props.locationName.lon} </Card.Text>
         </Card>
         }
+        {this.props.errorStatus &&
+          <Card className='center' style={{ width: '40rem' }}>
+            <Card.Title>Error:</Card.Title>
+            <Card.Text>{this.props.errorStatus}</Card.Text>
+          </Card>
+        }
 
       </div>
     );
