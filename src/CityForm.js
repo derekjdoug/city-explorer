@@ -5,6 +5,12 @@ import Form from 'react-bootstrap/Form';
 
 class CityForm extends React.Component {
 
+  clickHandler = (event) => {
+    event.preventDefault();
+    this.props.locationQuery();
+    this.props.forecastQuery();
+  }
+
   render() {
     return (
       <div>
@@ -14,7 +20,7 @@ class CityForm extends React.Component {
               placeholder= 'What City?'
             />
             <div className="d-grid gap-2">
-              <Button className='formButton' onClick={this.props.locationQuery}>
+              <Button className='formButton' onClick={this.clickHandler} type='submit' >
                 Explore!
               </Button>
             </div>
