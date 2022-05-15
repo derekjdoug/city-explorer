@@ -1,11 +1,11 @@
 # City Explorer
 
 **Author**: Dougie Douglas
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 2.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 
-- This application uses Axios and Location IQ APIs to provide information to the user about a search location of their choice.
+- This application uses Axios, Location IQ, and personal server APIs to provide information to the user about a search location of their choice.
 
 ## Getting Started
 
@@ -23,16 +23,19 @@
 05-12-2022 10:54pm -
 LocationIQ API integrated to render map/name/lat/lon of queried city.
 
+05-14-2022 07:35pm -
+Local server created to host weather data for user.
+
 ## Credit and Collaborations
 
 - Special thanks to Zayah Lang for helping me debug.
 
-Name of feature: Lab: Class 06, Asynchronous Code and APIs
+Name of feature: Lab: Class 07, Weather Integration
 
 Estimate of time needed to complete: 4 hours
 
-Start time: 10 May @ 2245
+Start time: 14 May @ 1500
 
-Finish time: 12 May @ 2255
+Finish time: 14 May @ 2000
 
-Actual time needed to complete: Approx. 4 hours
+Actual time needed to complete: Approx. 5 hours
