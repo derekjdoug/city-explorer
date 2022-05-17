@@ -57,7 +57,7 @@ class Main extends React.Component {
       <div className="App">
 
         <CityForm locationQuery={this.locationQuery} locationName={this.state.locationName} changeHandler={this.changeHandler} mapValue={this.state.mapValue} errorStatus={this.state.errorStatus} forecastQuery={this.forecastQuery} forecast={this.state.weatherData} />
-        <Weather forecastQuery={this.forecastQuery} forecast={this.state.weatherData} locationName={this.state.locationName} />
+        <Weather forecast={this.state.weatherData} locationName={this.state.locationName} />
       </div>
     );
   }
