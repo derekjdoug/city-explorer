@@ -32,11 +32,15 @@ class Main extends React.Component {
   }
 
   forecastQuery = async () => {
-    const weather = `${process.env.REACT_APP_WEATHER}?city=${this.state.searchQuery}`;
-    const response = await axios.get(weather);
-    console.log(response);
-    this.setState({ weatherData: response.data.forecastArr.map(day => (`Date: ${day.date} Forecast: ${day.description}`)) })
-    console.log(this.state.weatherData);
+    try {
+      const weather = `${process.env.REACT_APP_WEATHER}?city=${this.state.searchQuery}`;
+      const response = await axios.get(weather);
+      console.log(response.data);
+      this.setState({ weatherData: response.data.forecastArr.map(day => (`Date: ${day.date} Forecast: ${day.description}`)) })
+      console.log(this.state.weatherData);
+    } catch (error) {
+        this.errorHandler(error);
+    }
   }
 
   changeHandler = (event) => {
