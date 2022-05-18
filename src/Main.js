@@ -11,6 +11,8 @@ class Main extends React.Component {
       searchQuery: '',
       locationName: '',
       mapValue: '',
+      latData: '',
+      lonData: '',
       weatherData: '',
       errorStatus: ''
     }
@@ -24,7 +26,8 @@ class Main extends React.Component {
       console.log(response);
       this.setState({ locationName: response.data[0], errorStatus: '' });
       const map = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`;
-      this.setState({ mapValue: map });
+      this.setState({ mapValue: map, latData: response.data[0].lat, lonData: response.data[0].lon });
+      console.log(this.state.latData);
     }
     catch(error) {
       this.errorHandler(error);
