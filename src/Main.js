@@ -11,6 +11,7 @@ class Main extends React.Component {
       searchQuery: '',
       locationData: '',
       weatherData: '',
+      movieData: '',
       errorStatus: ''
     }
   }
@@ -21,8 +22,7 @@ class Main extends React.Component {
       const response = await axios.get(url);
       console.log('Response from Axios: ', response.data[0].display_name);
       console.log(response);
-      await this.setState({ locationData: response.data[0], errorStatus: '' });
-      this.forecastQuery();
+      this.setState({ locationData: response.data[0], errorStatus: '' }, this.queryHandler);
     }
     catch(error) {
       this.errorHandler(error);
@@ -42,6 +42,18 @@ class Main extends React.Component {
     }
   }
 
+  movieQuery = async () => {
+    try {
+      const url = `${process.env.REACT_APP_MOVIE}?${this.state.locationData.display_name}`;
+      console.log(url);
+      const response = await axios.get(url);
+      console.log(response.data);
+      this.setState({ movieData: response.data.map(movie => (`Movie: ${movie.title}`))});
+    } catch (error) {
+        this.errorHandler(error);
+    }
+  }
+
   changeHandler = (event) => {
     this.setState({ searchQuery: event.target.value.toLowerCase(), weatherData: '' });
   }
@@ -56,12 +68,17 @@ class Main extends React.Component {
     this.locationQuery();
   }
 
+  queryHandler = () => {
+    this.forecastQuery();
+    this.movieQuery();
+  }
+
   render() {
     return (
       <div className="App">
 
         <CityForm locationData={this.state.locationData} changeHandler={this.changeHandler} clickHandler={this.clickHandler} errorStatus={this.state.errorStatus} forecast={this.state.weatherData} />
-        <Weather forecast={this.state.weatherData} locationName={this.state.locationName} />
+        <Weather forecast={this.state.weatherData} locationName={this.state.locationName} movie={this.state.movieData} />
       </div>
     );
   }
