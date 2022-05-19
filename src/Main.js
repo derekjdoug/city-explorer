@@ -9,10 +9,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       searchQuery: '',
-      locationName: '',
-      mapValue: '',
-      latData: '',
-      lonData: '',
+      locationData: '',
       weatherData: '',
       errorStatus: ''
     }
@@ -24,23 +21,22 @@ class Main extends React.Component {
       const response = await axios.get(url);
       console.log('Response from Axios: ', response.data[0].display_name);
       console.log(response);
-      this.setState({ locationName: response.data[0], errorStatus: '' });
-      const map = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`;
-      this.setState({ mapValue: map, latData: response.data[0].lat, lonData: response.data[0].lon });
-      console.log(this.state.latData);
+      await this.setState({ locationData: response.data[0], errorStatus: '' });
+      this.forecastQuery();
     }
     catch(error) {
       this.errorHandler(error);
     }
+
   }
 
   forecastQuery = async () => {
     try {
-      const weather = `${process.env.REACT_APP_WEATHER}?city=${this.state.searchQuery}`;
-      const response = await axios.get(weather);
+      const url = `${process.env.REACT_APP_WEATHER}?lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`;
+      console.log(url);
+      const response = await axios.get(url);
       console.log(response.data);
-      this.setState({ weatherData: response.data.forecastArr.map(day => (`Date: ${day.date} Forecast: ${day.description}`)) })
-      console.log(this.state.weatherData);
+      this.setState({ weatherData: response.data.map(day => (`Date: ${day.date} Forecast: ${day.description}`))});
     } catch (error) {
         this.errorHandler(error);
     }
@@ -55,11 +51,16 @@ class Main extends React.Component {
     this.setState({ errorStatus: `Status Code: ${error.response.status} ${error.response.data.error}`, locationName: '' })
   }
 
+  clickHandler = (event) => {
+    event.preventDefault();
+    this.locationQuery();
+  }
+
   render() {
     return (
       <div className="App">
 
-        <CityForm locationQuery={this.locationQuery} locationName={this.state.locationName} changeHandler={this.changeHandler} mapValue={this.state.mapValue} errorStatus={this.state.errorStatus} forecastQuery={this.forecastQuery} forecast={this.state.weatherData} />
+        <CityForm locationData={this.state.locationData} changeHandler={this.changeHandler} clickHandler={this.clickHandler} errorStatus={this.state.errorStatus} forecast={this.state.weatherData} />
         <Weather forecast={this.state.weatherData} locationName={this.state.locationName} />
       </div>
     );
