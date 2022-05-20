@@ -18,6 +18,8 @@
 - Uses Axios for a promise-based HTTP client
 - LocationIQ API used for location data
 
+![WRRC](./img/city-explorer-wrrc.png)
+
 ## Change Log
 
 05-12-2022 10:54pm -
