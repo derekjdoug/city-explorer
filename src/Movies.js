@@ -17,7 +17,6 @@ class Movies extends React.Component {
               popularity={movie.popularity}
               released_on={movie.released_on}
               title={movie.title}
-              total_votes={movie.total_votes}
             />
           ))}
         </Row>
