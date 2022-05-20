@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import CityForm from './CityForm';
 import Weather from './Weather';
+import Movies from './Movies';
 
 class Main extends React.Component {
   constructor(props) {
@@ -78,7 +79,8 @@ class Main extends React.Component {
       <div className="App">
 
         <CityForm locationData={this.state.locationData} changeHandler={this.changeHandler} clickHandler={this.clickHandler} errorStatus={this.state.errorStatus} forecast={this.state.weatherData} />
-        <Weather forecast={this.state.weatherData} locationName={this.state.locationName} movie={this.state.movieData} />
+        <Weather forecast={this.state.weatherData} locationName={this.state.locationName} />
+        <Movies movieData={this.state.movieData} />
       </div>
     );
   }
