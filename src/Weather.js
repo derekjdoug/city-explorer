@@ -7,7 +7,9 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
+        {this.props.forecast &&
         <h1>Upcoming Weather</h1>
+        }
         <Row xs={1} sm={2} md={3} lg={3}>
           {this.props.forecast &&
           this.props.forecast.map(day => (
