@@ -23,12 +23,11 @@ class Main extends React.Component {
       const response = await axios.get(url);
       console.log('Response from Axios: ', response.data[0].display_name);
       console.log(response);
-      this.setState({ locationData: response.data[0], errorStatus: '' }, this.queryHandler);
+      this.setState({ locationData: response.data[0], errorStatus: '', weatherData: '' }, this.queryHandler);
     }
     catch(error) {
       this.errorHandler(error);
     }
-
   }
 
   forecastQuery = async () => {
@@ -37,7 +36,7 @@ class Main extends React.Component {
       console.log(url);
       const response = await axios.get(url);
       console.log(response.data);
-      this.setState({ weatherData: response.data.map(day => (`Date: ${day.date} Forecast: ${day.description}`))});
+      this.setState({ weatherData: response.data });
     } catch (error) {
         this.errorHandler(error);
     }
@@ -61,7 +60,7 @@ class Main extends React.Component {
 
   errorHandler = (error) => {
     console.error(error);
-    this.setState({ errorStatus: `Status Code: ${error.response.status} ${error.response.data.error}`, locationName: '' })
+    this.setState({ errorStatus: `Status Code: ${error.response.status} ${error.response.data.error}`, locationData: '' })
   }
 
   clickHandler = (event) => {
@@ -77,7 +76,6 @@ class Main extends React.Component {
   render() {
     return (
       <div className="App">
-
         <CityForm locationData={this.state.locationData} changeHandler={this.changeHandler} clickHandler={this.clickHandler} errorStatus={this.state.errorStatus} forecast={this.state.weatherData} />
         <Weather forecast={this.state.weatherData} locationName={this.state.locationName} />
         <Movies movieData={this.state.movieData} />

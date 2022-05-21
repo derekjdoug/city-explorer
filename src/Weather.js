@@ -1,19 +1,23 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import DailyForecast from './DailyForecast';
 
 class Weather extends React.Component {
 
   render() {
     return (
       <div>
-      {this.props.forecast &&
-        <Card className='center' style={{ width: '40rem' }}>
-          <Card.Title>Upcoming Weather Forecast</Card.Title>
-          <Card.Text>{this.props.forecast[0]}</Card.Text>
-          <Card.Text>{this.props.forecast[1]}</Card.Text>
-          <Card.Text>{this.props.forecast[2]}</Card.Text>
-        </Card>
-        }
+        <h1>Upcoming Weather</h1>
+        <Row xs={1} sm={2} md={3} lg={3}>
+          {this.props.forecast &&
+          this.props.forecast.map(day => (
+            <DailyForecast
+            key={day.date}
+            date={day.date}
+            description={day.description}
+            />
+            ))}
+        </Row>
       </div>
     );
   }
