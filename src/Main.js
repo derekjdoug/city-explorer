@@ -13,7 +13,8 @@ class Main extends React.Component {
       locationData: '',
       weatherData: '',
       movieData: '',
-      errorStatus: ''
+      errorStatus: '',
+      cityName: ''
     }
   }
 
@@ -44,7 +45,7 @@ class Main extends React.Component {
 
   movieQuery = async () => {
     try {
-      const url = `${process.env.REACT_APP_MOVIE}?city=${this.state.locationData.display_name.split(',')[0]}`;
+      const url = `${process.env.REACT_APP_MOVIE}?city=${this.state.cityName}`;
       console.log(url);
       const response = await axios.get(url);
       console.log(response.data);
@@ -66,6 +67,7 @@ class Main extends React.Component {
   clickHandler = (event) => {
     event.preventDefault();
     this.locationQuery();
+    this.setState({ movieName: event.target.value })
   }
 
   queryHandler = () => {
