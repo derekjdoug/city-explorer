@@ -44,7 +44,7 @@ class Main extends React.Component {
 
   movieQuery = async () => {
     try {
-      const url = `${process.env.REACT_APP_MOVIE}?city=${this.state.locationData.display_name}`;
+      const url = `${process.env.REACT_APP_MOVIE}?city=${this.state.locationData.display_name.split(',')[0]}`;
       console.log(url);
       const response = await axios.get(url);
       console.log(response.data);
