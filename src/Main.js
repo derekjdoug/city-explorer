@@ -57,7 +57,7 @@ class Main extends React.Component {
 
   changeHandler = (event) => {
     this.setState({ searchQuery: event.target.value.toLowerCase(), weatherData: '' });
-    this.setState({ movieName: event.target.value.toLowerCase() })
+    this.setState({ cityName: event.target.value.toLowerCase() })
   }
 
   errorHandler = (error) => {
