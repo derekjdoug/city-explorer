@@ -17,6 +17,8 @@
 - Styled with CSS and Bootstrap
 - Uses Axios for a promise-based HTTP client
 - LocationIQ API used for location data
+- WeatherBit.io used for weather data
+- Movies DB used for movie data
 
 ![WRRC](./img/city-explorer-wrrc.png)
 
@@ -28,16 +30,19 @@ LocationIQ API integrated to render map/name/lat/lon of queried city.
 05-14-2022 07:35pm -
 Local server created to host weather data for user.
 
+05-29-2022 07:50pm -
+APIs integrated
+
 ## Credit and Collaborations
 
-- Special thanks to Zayah Lang for helping me debug.
+- Special thanks to Zayah Lang and Luis Sandoval for helping me debug.
 
-Name of feature: Lab: Class 07, Weather Integration
+Name of feature: Lab: Class 10, Cache
 
 Estimate of time needed to complete: 4 hours
 
-Start time: 14 May @ 1500
+Start time: 28 May @ 1200
 
-Finish time: 14 May @ 2000
+Finish time: 29 May @ 2000
 
 Actual time needed to complete: Approx. 5 hours
